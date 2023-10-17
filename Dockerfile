@@ -9,7 +9,6 @@ RUN curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
 # Install Docker Compose
 RUN curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
-
 # Set the working directory
 WORKDIR /usr/src/app
 
@@ -45,7 +44,7 @@ USER root
 # Set the entrypoint script as executable
 RUN chmod a+x /usr/src/entrypoint.sh
 RUN chmod a+x /usr/local/bin/docker-compose
-#USER node
+RUN chmod a+x /usr/src/watch.sh
 
 # Set the entrypoint script as the default command, so users can pass in filenames and commands as arguments
 ENTRYPOINT ["/usr/src/entrypoint.sh"]
