@@ -10,7 +10,7 @@ RUN curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
 RUN curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
 # Set the working directory
-WORKDIR /home
+WORKDIR /usr/src/app
 
 # Create package.json file
 #RUN echo '{ "name": "reproduce-watcher", "version": "1.0.0", "description": "reproduce.work watcher daemon", "main": "index.js", "scripts": { "start": "node index.js" }, "author": "reproduce.work" }' > package.json
@@ -45,8 +45,11 @@ USER root
 RUN chmod a+x /usr/src/entrypoint.sh
 RUN chmod a+x /usr/local/bin/docker-compose
 
+WORKDIR /home
 # Set the entrypoint script as the default command, so users can pass in filenames and commands as arguments
 ENTRYPOINT ["/usr/src/entrypoint.sh"]
+
+
 
 #docker run --init -i -v $(pwd):/usr/src/app watcher "reproduce/main.md,reproduce/pubdata.toml,reproduce/latex/template.tex,reproduce/pubdata.toml,reproducible_plot.svg" 'echo "File has changed!"''
 #docker run -it -v $(pwd):/usr/src/app watcher "reproduce/main.md" "echo 'File has changed!'"
