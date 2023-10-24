@@ -10,16 +10,16 @@ RUN curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
 RUN curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
 # Set the working directory
-WORKDIR /usr/src/app
+WORKDIR /home
 
 # Create package.json file
-RUN echo '{ "name": "reproduce-watcher", "version": "1.0.0", "description": "reproduce.work watcher daemon", "main": "index.js", "scripts": { "start": "node index.js" }, "author": "reproduce.work" }' > package.json
+#RUN echo '{ "name": "reproduce-watcher", "version": "1.0.0", "description": "reproduce.work watcher daemon", "main": "index.js", "scripts": { "start": "node index.js" }, "author": "reproduce.work" }' > package.json
 
 # Copy the package-lock.json file (if you have one)
-COPY package*.json ./
+#COPY package*.json ./
 
 # Install chokidar-cli for file watching
-RUN npm install chokidar-cli
+RUN npm install -g chokidar-cli
 
 # Copy the rest of the application code
 COPY . .
@@ -33,8 +33,8 @@ FILES=\"\$1\"\n\
 COMMAND=\"\$2\"\n\
 # Convert comma-separated list to space-separated list\n\
 FILES_TO_WATCH=\$(echo \${FILES} | tr ',' ' ')\n\
-echo \"Files to Watch: \${FILES_TO_WATCH}\"\n\
-echo \"Command: \${COMMAND}\"\n\
+#echo \"Files to Watch: \${FILES_TO_WATCH}\"\n\
+#echo \"Command: \${COMMAND}\"\n\
 \n\
 # Use chokidar-cli to watch the files and execute the command when they change\n\
 npx chokidar-cli \${FILES_TO_WATCH} -c \"\${COMMAND}\""   > /usr/src/entrypoint.sh
