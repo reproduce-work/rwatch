@@ -1,5 +1,5 @@
 # Use a base Node image
-FROM node:14
+FROM node:21
 
 ENV SHELL /bin/bash
 
