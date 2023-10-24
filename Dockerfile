@@ -36,9 +36,8 @@ FILES=\"\$1\"\n\
 COMMAND=\"\$2\"\n\
 # Convert comma-separated list to space-separated list\n\
 FILES_TO_WATCH=\$(echo \${FILES} | tr ',' ' ')\n\
-#echo \"Files to Watch: \${FILES_TO_WATCH}\"\n\
-#echo \"Command: \${COMMAND}\"\n\
-\n\
+echo \"Files to Watch: \${FILES_TO_WATCH}\"\n\
+echo \"Command: \${COMMAND}\"\n\
 # Use chokidar-cli to watch the files and execute the command when they change\n\
 npx chokidar-cli \${FILES_TO_WATCH} -c \"\${COMMAND}\""   > /usr/src/entrypoint.sh
 
