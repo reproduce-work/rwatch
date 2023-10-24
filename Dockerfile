@@ -9,8 +9,11 @@ RUN curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
 # Install Docker Compose
 RUN curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
+
+RUN mkdir /watchercontext
+
 # Set the working directory
-WORKDIR /usr/src/app
+WORKDIR /watchercontext
 
 # Create package.json file
 #RUN echo '{ "name": "reproduce-watcher", "version": "1.0.0", "description": "reproduce.work watcher daemon", "main": "index.js", "scripts": { "start": "node index.js" }, "author": "reproduce.work" }' > package.json
