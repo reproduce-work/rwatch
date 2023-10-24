@@ -45,7 +45,6 @@ USER root
 RUN chmod a+x /usr/src/entrypoint.sh
 RUN chmod a+x /usr/local/bin/docker-compose
 
-WORKDIR /home
 # Set the entrypoint script as the default command, so users can pass in filenames and commands as arguments
 ENTRYPOINT ["/usr/src/entrypoint.sh"]
 
